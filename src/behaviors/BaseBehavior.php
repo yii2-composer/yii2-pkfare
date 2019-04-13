@@ -1,0 +1,81 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: liyifei
+ * Date: 19-4-13
+ * Time: 下午8:50
+ */
+
+namespace ota\pkfare\behaviors;
+
+
+use yii\base\Component;
+use yii\base\Exception;
+use yii\helpers\ArrayHelper;
+use yii\httpclient\Client;
+
+class BaseBehavior extends Component
+{
+    public $partnerId;
+
+    public $partnerKey;
+
+    public $url;
+
+    public $debug;
+
+    public function init()
+    {
+        if ($this->debug) {
+            $this->url = $this->urlDebug;
+        } else {
+            $this->url = $this->urlProd;
+        }
+        parent::init();
+    }
+
+    public function send($get = [], $post = [])
+    {
+        $client = new Client();
+        $request = $client->createRequest();
+
+        if ($get) {
+            $this->url .= '?param=' . $this->_buildParam($get);
+        }
+        $request->setUrl($this->url);
+        if ($post) {
+            $request->setMethod('POST');
+            $request->setData($post);
+        }
+
+        $response = $request->send();
+        if ($response->isOk) {
+            $data = json_decode(zlib_decode($response->content), true);
+            if ($data['errorCode'] !== '0') {
+                throw new Exception($data['errorMsg']);
+            }
+
+            return $data['data'];
+        } else {
+            throw new Exception("Pkfare request fail, status: {$response->statusCode}, message: {$response->content}");
+        }
+    }
+
+    private function _buildParam($get)
+    {
+        $data = ArrayHelper::merge([
+            'authentication' => [
+                'partnerId' => $this->partnerId,
+                'sign' => $this->_sign()
+            ],
+
+        ], $get);
+
+        return base64_encode(json_encode($data));
+    }
+
+    private function _sign()
+    {
+        return md5($this->partnerId . $this->partnerKey);
+    }
+}
