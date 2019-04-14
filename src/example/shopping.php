@@ -9,27 +9,25 @@
 require 'common.php';
 
 $data = [
-    'search' => [
-        "adults" => 1,
-        "airline" => "",
-        "children" => 1,
-        "nonstop" => 0,
-        "searchAirLegs" => [
-            [
-                "cabinClass" => "Economy",
-                "departureDate" => "2019-08-26",
-                "destination" => "LAX",
-                "origin" => "HKG"
-            ],
-            [
-                "cabinClass" => "Economy",
-                "departureDate" => "2019-09-10",
-                "destination" => "HKG",
-                "origin" => "LAX"
-            ]
+    "adults" => 1,
+    "airline" => "",
+    "children" => 1,
+    "nonstop" => 0,
+    "searchAirLegs" => [
+        [
+            "cabinClass" => "Economy",
+            "departureDate" => "2019-08-26",
+            "destination" => "LAX",
+            "origin" => "HKG"
         ],
-        "solutions" => 0
-    ]
+        [
+            "cabinClass" => "Economy",
+            "departureDate" => "2019-09-10",
+            "destination" => "HKG",
+            "origin" => "LAX"
+        ]
+    ],
+    "solutions" => 0
 ];
 
 /**

@@ -25,7 +25,8 @@ class Application extends Component
 
     private $_classMap = [
         'shopping' => 'ota\pkfare\behaviors\Shopping',
-//        'precise-pricing' => 'ota\globepay\lib\drivers\GlobePayApplyRefund',
+        'precise-pricing' => 'ota\pkfare\behaviors\PrecisPricing',
+        'precise-booking' => 'ota\pkfare\behaviors\PrecisBooking',
 //        'order-pricing' => 'ota\globepay\lib\drivers\GlobePayOrderQuery',
 //        'penalty' => '',
 //        'cancel-order' => '',

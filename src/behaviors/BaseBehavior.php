@@ -22,6 +22,8 @@ class BaseBehavior extends Component
 
     public $url;
 
+    public $needDecode;
+
     public $debug;
 
     public function init()
@@ -50,7 +52,12 @@ class BaseBehavior extends Component
 
         $response = $request->send();
         if ($response->isOk) {
-            $data = json_decode(zlib_decode($response->content), true);
+            if ($this->needDecode) {
+                $data = json_decode(zlib_decode($response->content), true);
+            } else {
+                $data = json_decode($response->content, true);
+            }
+
             if ($data['errorCode'] !== '0') {
                 throw new Exception($data['errorMsg']);
             }

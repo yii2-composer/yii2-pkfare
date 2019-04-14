@@ -15,8 +15,10 @@ class Shopping extends BaseBehavior
 
     public $urlDebug = 'https://open.pkfare.com/apitest/shoppingV2';
 
+    public $needDecode = true;
+
     public function request($data)
     {
-        return $this->send($data);
+        return $this->send(['search' => $data]);
     }
 }
