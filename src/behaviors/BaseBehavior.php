@@ -59,7 +59,6 @@ class BaseBehavior extends Component
             }
 
             if ($data['errorCode'] !== '0') {
-                echo $data['errorMsg'];exit;
                 throw new Exception($data['errorMsg']);
             }
 
