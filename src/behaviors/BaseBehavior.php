@@ -58,7 +58,9 @@ class BaseBehavior extends Component
                 $data = json_decode($response->content, true);
             }
 
+            print_r($data);exit;
             if ($data['errorCode'] !== '0') {
+                echo $data['errorMsg'];exit;
                 throw new Exception($data['errorMsg']);
             }
 

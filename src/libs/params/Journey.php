@@ -28,6 +28,6 @@ class Journey extends BaseObject
     public $departureDate;
 
     public $departureTime;
-    
+
     public $bookingCode;
 }
