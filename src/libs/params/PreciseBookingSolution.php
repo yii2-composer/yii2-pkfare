@@ -25,5 +25,5 @@ class PreciseBookingSolution extends BaseObject
 
     public $comments;
 
-    public $jounerys;
+    public $journeys;
 }
