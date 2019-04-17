@@ -29,7 +29,8 @@ class Application extends Component
         'precise-booking' => 'ota\pkfare\behaviors\PrecisBooking',
         'penalty' => 'ota\pkfare\behaviors\Penalty',
         'cancel-order' => 'ota\pkfare\behaviors\CancelOrder',
-        'order-pricing' => 'ota\pkfare\behaviors\OrderPricing'
+        'order-pricing' => 'ota\pkfare\behaviors\OrderPricing',
+        'ticketing' => 'ota\pkfare\behaviors\Ticketing'
     ];
 
     public function driver($api, $extra = [])
