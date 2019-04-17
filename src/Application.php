@@ -27,10 +27,9 @@ class Application extends Component
         'shopping' => 'ota\pkfare\behaviors\Shopping',
         'precise-pricing' => 'ota\pkfare\behaviors\PrecisPricing',
         'precise-booking' => 'ota\pkfare\behaviors\PrecisBooking',
-//        'order-pricing' => 'ota\globepay\lib\drivers\GlobePayOrderQuery',
         'penalty' => 'ota\pkfare\behaviors\Penalty',
-//        'cancel-order' => '',
-//        'ticketing' => ''
+        'cancel-order' => 'ota\pkfare\behaviors\CancelOrder',
+        'order-pricing' => 'ota\pkfare\behaviors\OrderPricing'
     ];
 
     public function driver($api, $extra = [])

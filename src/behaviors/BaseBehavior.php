@@ -26,6 +26,8 @@ class BaseBehavior extends Component
 
     public $debug;
 
+    public $lastErrorCode;
+
     public function init()
     {
         if ($this->debug) {
@@ -38,6 +40,8 @@ class BaseBehavior extends Component
 
     public function send($get = [], $post = [])
     {
+        $this->lastErrorCode = null;
+
         $client = new Client();
         $request = $client->createRequest();
 
@@ -59,11 +63,14 @@ class BaseBehavior extends Component
             }
 
             if ($data['errorCode'] !== '0') {
+                $this->lastErrorCode = $data['errorCode'];
                 throw new Exception($data['errorMsg']);
             }
 
             return $data['data'];
         } else {
+            $this->lastErrorCode = 'HTTP_REQUEST_ERROR';
+
             throw new Exception("Pkfare request fail, status: {$response->statusCode}, message: {$response->content}");
         }
     }
